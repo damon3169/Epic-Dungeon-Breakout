@@ -65,10 +65,10 @@ void setBallCollision(Barre barre) {
         vx = -vx;
       }
     }
-    float dif = barre.listPosBarre.get(0).x -barre.listPosBarre.get(1).x;
+    /*float dif = barre.listPosBarre.get(0).x -barre.listPosBarre.get(1).x;
      if (Math.abs(dif)> 15){
       // faire acceler la balle
-     }
+     }*/
     
   }
   
