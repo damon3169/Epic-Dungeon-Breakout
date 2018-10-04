@@ -1,30 +1,34 @@
-class MAIN_MENU {
 final int stateMenu                  = 0;
 final int statePlayTheGame      = 1;
 final int stateRules = 2;
 int state = stateMenu;
-
-
+//Menu
 PFont font;
 
-MAIN_MENU(){}
+int cols, rows;
+int scl = 20;
+int w = 200;
+int h = 3000;
+
+float flying = 0;
+
+float[][] terrain;
 
 
+void setup(){
 
-void setup()
-{
-  // runs only once
-  //
-  size(700, 600);
+  size(700, 600, P3D);
   smooth();
   font = createFont("ARCARTER-78.vlw", 14);
   textFont(font);
+  textMode(MODEL);
+  cols = w / scl;
+  rows = h/ scl;
+  terrain = new float[cols][rows];
 } // func
 //
 void draw()
 {
-  // the main routine. It handles the states.
-  // runs again and again
   switch (state) {
   case stateMenu:
     showMenu();
@@ -41,8 +45,37 @@ void draw()
       + " ++++++++++++++++++++++");
     exit();
     break;
-  } // switch
-  //
+  } 
+  
+   flying -= 0.07;
+
+  float yoff = flying;
+  for (int y = 0; y < rows; y++) {
+    float xoff = 0;
+    for (int x = 0; x < cols; x++) {
+      terrain[x][y] = map(noise(xoff, yoff), -1, 2, -150, 250);
+      xoff += 0.2;
+    }
+    yoff += 0.3;
+  }
+
+
+  stroke(255,0,0,100);
+  fill(0);
+
+  translate(width/2, height/2+50);
+  rotateX(PI/3);
+  translate(-w/2, -h/2);
+  for (int y = 0; y < rows-1; y++) {
+    beginShape(TRIANGLE_STRIP);
+    for (int x = 0; x < cols; x++) {
+      vertex(x*scl, y*scl, terrain[x][y]);
+      vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
+      //rect(x*scl, y*scl, scl, scl);
+    }
+    endShape();
+  } 
+  
 } // func
 // ----------------------------------------------------------------
 // keyboard functions
@@ -112,38 +145,36 @@ void keyPressedForStateRules() {
 // They depend on the states and are called by draw().
 
 void showMenu() {
-  background(255, 0, 0, 100);
-  fill(0);
-  textSize(52);
-  text(" Epic Dungeon Brékout ", 60, 100, 3);
+  background(255, 0, 0, 0);
+  textSize(32);
+  text(" Epic Dungeon Brékout ", 40, 50, 3);
   textSize(14);
-  text("Press 1 To Play The Game ", 100, 200);
-  text("Press 2 Rules ", 100, 220);
+  text("Press 1 To Play The Game ", 50, 200);
+  text("Press 2 Rules ", 500, 200);
   //
-  text("Press x to quit ", 100, 260);
+  text("Press x to quit ", 500, 460);
   //
 } // func
 
 void handleStatePlayTheGame() {
-  background(255, 0, 0);
+
   fill(0);
   textSize(32);
-  text(" Play The Game ", 150, 100, 3);
+  text(" Play The Game ", 0, 100, 3);
   textSize(14);
-  text("This is the fucking game, got ya ", 100, 200);
+  text("This is the fucking game, got ya ", 0, 100);
   //
 } // func
 //
 
 void handleStateRules() {
-  background(255, 204, 0);
+
   fill(0);
   textSize(32);
-  text(" The Rules ", 150, 100, 3);
+  text(" There are ", 150, 100, 3);
   textSize(14);
-  text("..... some text ", 100, 200);
+  text(" no rules ", 100, 200);
   //
 } // func
 // ----------------------------------------------------------------
 //
-}
