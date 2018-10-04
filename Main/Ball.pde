@@ -53,23 +53,38 @@ void drawStoreTrace() {
 
 void setBallCollision(Barre barre) {
   if( posY>48 && posY<55 ){
-    if( posX>barre.getPosX() && posX< barre.getPosX()+(barre.getwidthObject()/2) ){
+    if( posX>barre.getPosX() && posX<barre.getPosX()+5 ){
+      vy = -vy;
+      if (vx>0){
+        vx = -vx;
+      }
+      vx = vx *1.5;
+      println(vx);
+      
+    }
+    else if( posX> barre.getPosX()+ barre.getwidthObject()-5 && posX< barre.getPosX()+barre.getwidthObject() ){
+      vy = -vy;
+          println(vx);
+      if (vx<0){
+        vx = -vx;
+      }
+      vx = vx *1.5;
+            println(vx);
+
+    }
+    
+    else if( posX>barre.getPosX() && posX< barre.getPosX()+(barre.getwidthObject()/2) ){
       vy = -vy;
       if (vx>0){
         vx = -vx;
       }
     }
-    if( posX> barre.getPosX()+(barre.getwidthObject()/2) && posX< barre.getPosX()+barre.getwidthObject() ){
+    else if( posX> barre.getPosX()+(barre.getwidthObject()/2) && posX< barre.getPosX()+barre.getwidthObject() ){
       vy = -vy;
       if (vx<0){
         vx = -vx;
       }
     }
-    /*float dif = barre.listPosBarre.get(0).x -barre.listPosBarre.get(1).x;
-     if (Math.abs(dif)> 15){
-      // faire acceler la balle
-     }*/
-    
   }
   
    if( posY>=600 ){

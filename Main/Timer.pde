@@ -1,6 +1,7 @@
 class Timer
 {
  float Time;
+ boolean timerEnd = false;
  
  Timer(float set)//Constructor when you create a new Timer
  {
@@ -23,7 +24,7 @@ class Timer
    println(Time);
    Time -= 1/frameRate;
     if(Time<0){
-   println("game over");
+       timerEnd = true;
     }
  }
  
