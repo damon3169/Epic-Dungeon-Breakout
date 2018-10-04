@@ -9,11 +9,9 @@ void setup() {
   noFill();
   noStroke();
   smooth();
-
  barre = new Barre(300,590, 70);
  ball1 = new Ball(500,500,15,5, 3);
  // ball2 = new Ball(500,450,15,5, 3);
-
 
 }
 
