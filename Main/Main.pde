@@ -4,11 +4,8 @@ Barre barre;
 Ball ball1,ball2,ball3;
 Timer startTimer;
 Menu menu;
-<<<<<<< HEAD
-ArrayList<Brique> bricks;
-=======
+//ArrayList<Brique> bricks;
 Score scoreMonstre; // score
->>>>>>> 3aadee8e9be52f97a548a1781515ba60afe69aa8
 
 final int stateMenu                  = 0;
 final int statePlayTheGame      = 1;
