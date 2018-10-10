@@ -92,7 +92,7 @@ void setBallCollision(Barre barre) {
   }
   
   
-  if ( posX<=0 || posX>=600 ){
+  if ( posX<=0 || posX>=700 ){
     vx = -vx;
   }
 

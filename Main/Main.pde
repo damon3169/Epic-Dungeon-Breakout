@@ -30,6 +30,7 @@ void draw() {
       background(200);
      fill(0);
      if (!startTimer.timerEnd){
+         noStroke();
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
          barre.spawnBarre(mouseX-barre.widthObject/2,550);
