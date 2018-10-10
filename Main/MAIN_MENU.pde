@@ -10,6 +10,11 @@ int scl = 20;
 int w = 200;
 int h = 3000;
 
+float x = 50;
+float y = 180;
+float v = 160;
+float b = 30;
+
 float flying = 0;
 
 float[][] terrain;
@@ -30,24 +35,9 @@ Menu(){
 //
 void MakeMenu()
 {
-  switch (state) {
-  case stateMenu:
-    showMenu();
-    break;
-  case statePlayTheGame:
-
-    handleStatePlayTheGame();
-    break;
-  case stateRules:
-    handleStateRules();
-    break;
-  default: //<>//
-    println ("Unknown state (in draw) "
-      + state
-      + " ++++++++++++++++++++++");
-    exit();
-    break;
-  } 
+  showMenu();
+  //<>//
+ 
   
      flying -= 0.07;
   
@@ -87,45 +77,8 @@ boolean getIsGamePlaying() {
 }
 
 
-void keyPressedForStateMenu() {
-  //
-  switch(key) {
-  case '1':
-    state = statePlayTheGame; //<>//
-              
-    break;
-  case '2':
-    state = stateRules;
-    break;
-  case 'x':
-  case 'X':
-    // quit
-    exit();
-    break;
-  default:
-    // do nothing
-    break;
-  }// switch
-  //
-} // func
-void keyPressedForStatePlayTheGame() {
-  // any key is possible
-  switch(key) {
-  default:
-    state = stateMenu;
-    break;
-  } // switch
-  //
-} // func
-void keyPressedForStateRules() {
-  // any key is possible
-  switch(key) {
-  default:
-    state = stateMenu;
-    break;
-  } // switch
-  //
-} // func
+ //<>//
+
 
 // ----------------------------------------------------------------
 // functions to show the menu and functions that are called from the menu.
@@ -136,29 +89,36 @@ void showMenu() {
   textSize(32);
   text(" Epic Dungeon Brékout ", 40, 50, 3);
   textSize(14);
-  text("Press 1 To Play The Game ", 50, 200);
-  text("Press 2 Rules ", 500, 200);
+  text(" Click Here To Play ", 50, 200);
   //
-  text("Press x to quit ", 500, 460);
+  text(" Press Any Key To Exit ", 50, 300);
+    if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+b){
+      cursor(HAND);
+    }
+    else {cursor(ARROW);}
+   noStroke();
+   noFill();
+   rect(x,y,v,b);
+  
+   if(mousePressed){
+  if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+b){
+    playTheGame();
+    noCursor();
+
+ 
+  }
+   }
   //
 } // func
 
-void handleStatePlayTheGame() {
+void playTheGame() {
 println("state changekeyPressedForStateMenu");
  isGamePlaying = true;
   //
 } // func
 //
 
-void handleStateRules() {
 
-  fill(0);
-  textSize(32);
-  text(" There are ", 150, 100, 3);
-  textSize(14);
-  text(" no rules ", 100, 200);
-  //
-} // func
 
 
 }

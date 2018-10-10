@@ -45,6 +45,12 @@ void draw() {
     menu.MakeMenu();
   }
 
+  if (mousePressed) {
+
+  }
+  
+
+
 
 }
 
@@ -56,23 +62,5 @@ void mouseMoved() {
 }
 
 void keyPressed() {
-  // keyboard. Also different depending on the state.
-  switch (menu.state) {
-  case stateMenu:
-    menu.keyPressedForStateMenu();
-    break;
-  case statePlayTheGame:
-    menu.keyPressedForStatePlayTheGame();
-    break;
-  case stateRules:
-    menu.keyPressedForStateRules();
-    break;
-  default:
-    println ("Unknown state (in keypressed) "
-      + menu.state
-      + " ++++++++++++++++++++++");
-    exit();
-    break;
-  } // switch
-  //
-} // func
+  exit();
+}
