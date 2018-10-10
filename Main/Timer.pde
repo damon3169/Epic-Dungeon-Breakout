@@ -3,19 +3,19 @@ class Timer
  float Time;
  boolean timerEnd = false;
  
- Timer(float set)//Constructor when you create a new Timer
+ Timer(float set)
  {
    Time = set;
  }
- float getTime()//return the current time
+ float getTime()
  {
  return(Time); 
 }
- void setTimer(float set)//set the Timer to whatever you put as you temp varable 
+ void setTimer(float set) 
  {
   Time = set;
  }
- void countUp()// update the timer by counting up. this need to be called within void draw() to work
+ void countUp()
  {
  Time += 1/frameRate;
  }
