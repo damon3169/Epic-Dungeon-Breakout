@@ -26,12 +26,17 @@ void setVy (float vy){
   this.vy = vy;
 }
 
-float getVx (){
-  return vx;
+float getVy (){
+  return vy;
 }
 
-float getVy ( ){
-  return vy ;
+
+float getposX (){
+  return posX;
+}
+
+float getposY ( ){
+  return posY ;
 }
 
 void createBall(){
@@ -78,7 +83,6 @@ void setBallCollision(Barre barre) {
     else if( posX> barre.getPosX()+ barre.getwidthObject()-5 && posX< barre.getPosX()+barre.getwidthObject() ){
       vy = -vy;
       scoreMonstre.scoreUp();
-          println(vx);
       if (vx<0){
         vx = -vx;
       }

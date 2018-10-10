@@ -10,10 +10,10 @@ Score scoreMonstre; // score
 final int stateMenu                  = 0;
 final int statePlayTheGame      = 1;
 final int stateRules = 2;
-float brickWidth = 20;
-boolean firstTime;
-float posXBrique ;
-float posYBrique;
+float brickWidth = 40;
+boolean firstTime = true;
+float posXBrique =0;
+float posYBrique= 50;
 
 
 void setup() {
@@ -28,8 +28,7 @@ void setup() {
 
  scoreMonstre = new Score(0);
   ball1 = new Ball(500,500,15,5, 3, scoreMonstre);
- 
-
+  bricks = new ArrayList<Brique>();
 }
 
 void draw() {
@@ -40,11 +39,17 @@ void draw() {
          if (firstTime)
          {
            firstTime = false;
-           for (int i = 0;i<20; i++ ){
+           for (int i = 0;i<600/(brickWidth+10); i++ ){
              
-             //Brique brick = posXBrique
+             Brique brick = new Brique (posXBrique, posYBrique,ball1) ;
+             bricks.add(brick);
+             posXBrique = posXBrique + (brickWidth+10);
            }
          }
+         for (int i = 0; i < bricks.size(); i++) {
+           bricks.get(i).createBrick();
+         }
+         
          noStroke();
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
@@ -61,6 +66,12 @@ void draw() {
     menu.MakeMenu();
   }
 
+  if (mousePressed) {
+
+  }
+  
+
+
 
 
 }
@@ -73,23 +84,5 @@ void mouseMoved() {
 }
 
 void keyPressed() {
-  // keyboard. Also different depending on the state.
-  switch (menu.state) {
-  case stateMenu:
-    menu.keyPressedForStateMenu();
-    break;
-  case statePlayTheGame:
-    menu.keyPressedForStatePlayTheGame();
-    break;
-  case stateRules:
-    menu.keyPressedForStateRules();
-    break;
-  default:
-    println ("Unknown state (in keypressed) "
-      + menu.state
-      + " ++++++++++++++++++++++");
-    exit();
-    break;
-  } // switch
-  //
-} // func
+  exit();
+}

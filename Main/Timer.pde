@@ -21,7 +21,6 @@ class Timer
  }
  void countDown()
  {
-   println(Time);
    Time -= 1/frameRate;
     if(Time<0){
        timerEnd = true;
