@@ -26,6 +26,14 @@ void setVy (float vy){
   this.vy = vy;
 }
 
+float getVx (){
+  return vx;
+}
+
+float getVy ( ){
+  return vy ;
+}
+
 void createBall(){
   float ax = 0;
   float ay = 0;
