@@ -4,6 +4,7 @@ Barre barre;
 Ball ball1,ball2,ball3;
 Timer startTimer;
 Menu menu;
+Score scoreMonstre; // score
 
 final int stateMenu                  = 0;
 final int statePlayTheGame      = 1;
@@ -15,10 +16,15 @@ void setup() {
   noStroke();
   smooth();
  barre = new Barre(300,590, 70);
- ball1 = new Ball(500,500,15,5, 3);
  // ball2 = new Ball(500,450,15,5, 3);
  startTimer = new Timer(60);
  menu = new Menu();
+ scoreMonstre = new Score(0);
+  ball1 = new Ball(500,500,15,5, 3, scoreMonstre);
+ 
+ 
+ 
+ 
 
 }
 
@@ -33,6 +39,7 @@ void draw() {
          noStroke();
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
+         scoreMonstre.startScore(); //Score
          barre.spawnBarre(mouseX-barre.widthObject/2,550);
          ball1.createBall();
          // ball2.createBall();
@@ -44,6 +51,7 @@ void draw() {
     else  {
     menu.MakeMenu();
   }
+
 
 
 }
