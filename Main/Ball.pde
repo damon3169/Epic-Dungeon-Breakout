@@ -6,14 +6,16 @@ float vx;
 float widthBall;
 ArrayList<PVector> hist = new ArrayList<PVector>();
 float sizeTraceBall,traparenceTraceBall;
+Score scoreMonstre;
 
 
-Ball (float posX,float posY,float widthObject,float vy,float vx) {
+Ball (float posX,float posY,float widthObject,float vy,float vx, Score score) {
   this.posX = posX;
   this.posY = posY;
   this.widthBall =widthObject ;
   this.vy =vy;
   this.vx = vx;
+  scoreMonstre = score;
 }
 
 void setVx (float vx){
@@ -53,34 +55,42 @@ void drawStoreTrace() {
 
 void setBallCollision(Barre barre) {
   if( posY>48 && posY<55 ){
+    //collision avec extrémité gauche de la barre
     if( posX>barre.getPosX() && posX<barre.getPosX()+5 ){
       vy = -vy;
+      scoreMonstre.scoreUp();
       if (vx>0){
         vx = -vx;
+        
       }
       vx = vx *1.5;
-      println(vx);
       
     }
+    //collision avec extrémité droite de la barre
     else if( posX> barre.getPosX()+ barre.getwidthObject()-5 && posX< barre.getPosX()+barre.getwidthObject() ){
       vy = -vy;
+      scoreMonstre.scoreUp();
           println(vx);
       if (vx<0){
         vx = -vx;
       }
       vx = vx *1.5;
-            println(vx);
+            
 
     }
     
     else if( posX>barre.getPosX() && posX< barre.getPosX()+(barre.getwidthObject()/2) ){
+      //collision avec la gauche de la barre
       vy = -vy;
+      scoreMonstre.scoreUp();
       if (vx>0){
         vx = -vx;
       }
     }
     else if( posX> barre.getPosX()+(barre.getwidthObject()/2) && posX< barre.getPosX()+barre.getwidthObject() ){
+      //collision avec la droite de la barre
       vy = -vy;
+      scoreMonstre.scoreUp();
       if (vx<0){
         vx = -vx;
       }
