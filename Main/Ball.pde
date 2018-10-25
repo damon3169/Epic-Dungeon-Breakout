@@ -82,7 +82,7 @@ void drawStoreTrace() {
 void setBallCollision(Barre barre) {
   if( posY>48 && posY<55 ){
     //collision avec extrémité gauche de la barre
-    if( posX-widthBall/2>barre.getPosX() && posX+widthBall/2<barre.getPosX()+5 ){
+    if( posX+widthBall/2>=barre.getPosX() && posX-widthBall/2<=barre.getPosX()+5 ){
       vy = -vy;
       scoreMonstre.scoreUp();
       if (vx>0){
@@ -92,7 +92,7 @@ void setBallCollision(Barre barre) {
       
     }
     //collision avec extrémité droite de la barre
-    else if( posX-widthBall/2 > barre.getPosX()+ barre.getwidthObject()-5 && posX+widthBall/2< barre.getPosX()+barre.getwidthObject() ){
+    else if( posX+widthBall/2 >= barre.getPosX()+ barre.getwidthObject()-5 && posX-widthBall/2<= barre.getPosX()+barre.getwidthObject() ){
       vy = -vy;
       scoreMonstre.scoreUp();
       if (vx<0){
@@ -103,7 +103,7 @@ void setBallCollision(Barre barre) {
 
     }
     
-    else if( posX-widthBall/2>barre.getPosX() && posX+widthBall/2< barre.getPosX()+(barre.getwidthObject()/2) ){
+    else if( posX+widthBall/2>=barre.getPosX() && posX-widthBall/2<= barre.getPosX()+(barre.getwidthObject()/2) ){
       //collision avec la gauche de la barre
       vy = -vy;
       scoreMonstre.scoreUp();
@@ -111,7 +111,7 @@ void setBallCollision(Barre barre) {
         vx = -vx;
       }
     }
-    else if( posX-widthBall/2> barre.getPosX()+(barre.getwidthObject()/2) && posX+widthBall/2< barre.getPosX()+barre.getwidthObject() ){
+    else if( posX+widthBall/2>= barre.getPosX()+(barre.getwidthObject()/2) && posX-widthBall/2<= barre.getPosX()+barre.getwidthObject() ){
       //collision avec la droite de la barre
       vy = -vy;
       scoreMonstre.scoreUp();
