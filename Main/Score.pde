@@ -26,7 +26,11 @@ void scoreUp()
   }
   
   
+String[] stringScore(){
+String[] table=new String[1];
+table[0]=str(scoreMonstre);
 
+return table;}
 
 
 }

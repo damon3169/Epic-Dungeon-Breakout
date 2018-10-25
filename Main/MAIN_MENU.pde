@@ -87,7 +87,7 @@ boolean getIsGamePlaying() {
 void showMenu() {
   background(255, 0, 0, 0);
   textSize(32);
-  text(" Epic Dungeon Brékout ", 40, 50, 3);
+  text(" Epic Dungeon Breakout ", 40, 50, 3);
   textSize(14);
   text(" Click Here To Play ", 50, 200);
   //

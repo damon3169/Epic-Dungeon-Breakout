@@ -1,4 +1,4 @@
-import processing.sound.*;
+//import processing.sound.*;
 
 Barre barre;
 Ball ball1,ball2,ball3;
@@ -35,7 +35,7 @@ void draw() {
    if (menu.getIsGamePlaying()){
       background(200);
      fill(0);
-     if (!startTimer.timerEnd){
+     if (!startTimer.timerEnd && ball1.getposY()>0){
          if (firstTime)
          {
            firstTime = false;
@@ -62,7 +62,8 @@ void draw() {
          ball1.createBall();
          // ball2.createBall();
         }
-        else {
+        else{
+          saveStrings("save.txt",scoreMonstre.stringScore());
           println("Game Over");
         }
        }

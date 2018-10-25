@@ -77,7 +77,6 @@ void drawStoreTrace() {
      sizeTraceBall =sizeTraceBall +1;
      traparenceTraceBall = traparenceTraceBall +2.3;
   }
-  println(sizeTraceBall);
 }
 
 void setBallCollision(Barre barre) {
