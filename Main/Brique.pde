@@ -24,9 +24,10 @@ class Brique {
   }
   
   private void isCollideBall(){
-    if (ball.getposX() >= this.posX && ball.getposX()<=  this.posX + widthBrick){
-     if (600-ball.getposY() >= this.posY && 600-ball.getposY()<=  this.posY + heigthBrick){
+    if (ball.getposX()+ball.getwidthBall()/2 >= this.posX && ball.getposX()-ball.getwidthBall()/2<=  this.posX + widthBrick){ 
+     if (600-(ball.getposY()-ball.getwidthBall()/2) >= this.posY && 600-(ball.getposY()+ball.getwidthBall()/2)<=  this.posY + heigthBrick){
        brickTakeDamage(1);
+       ball.addNumberBricksAtFrame(1);
        ball.setVy( -ball.getVy());
       }
     }

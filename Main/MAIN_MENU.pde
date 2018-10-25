@@ -112,7 +112,6 @@ void showMenu() {
 } // func
 
 void playTheGame() {
-println("state changekeyPressedForStateMenu");
  isGamePlaying = true;
   //
 } // func

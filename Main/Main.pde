@@ -12,7 +12,7 @@ final int statePlayTheGame      = 1;
 final int stateRules = 2;
 float brickWidth = 40;
 boolean firstTime = true;
-float posXBrique =0;
+float posXBrique =50;
 float posYBrique= 50;
 
 
@@ -27,8 +27,8 @@ void setup() {
  menu = new Menu();
 
  scoreMonstre = new Score(0);
-  ball1 = new Ball(500,500,15,5, 3, scoreMonstre);
-  bricks = new ArrayList<Brique>();
+ ball1 = new Ball(300,100,15,5, 3, scoreMonstre);
+ bricks = new ArrayList<Brique>();
 }
 
 void draw() {
@@ -39,12 +39,16 @@ void draw() {
          if (firstTime)
          {
            firstTime = false;
-           for (int i = 0;i<600/(brickWidth+10); i++ ){
-             
-             Brique brick = new Brique (posXBrique, posYBrique,ball1) ;
-             bricks.add(brick);
-             posXBrique = posXBrique + (brickWidth+10);
-           }
+           for (int j = 0;j<5; j++ ){
+             for (int i = 0;i<600/(brickWidth+10); i++ ){
+               
+               Brique brick = new Brique (posXBrique, posYBrique,ball1) ;
+               bricks.add(brick);
+               posXBrique = posXBrique + (brickWidth+10);
+             }
+             posXBrique = 50;
+             posYBrique = posYBrique + (60);
+          }
          }
          for (int i = 0; i < bricks.size(); i++) {
            bricks.get(i).createBrick();
