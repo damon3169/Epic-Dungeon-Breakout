@@ -43,6 +43,7 @@ float getposY ( ){
   return posY ;
 }
 
+
 void addNumberBricksAtFrame(float newnumberBricksAtFrame){
   numberBricksAtFrame +=  newnumberBricksAtFrame;
 }
