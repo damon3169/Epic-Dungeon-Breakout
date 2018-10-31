@@ -49,12 +49,31 @@ void draw() {
        }
          if (firstTime)
          {
+           bricks.clear();
            firstTime = false;
+           posXBrique = 50;
+           posYBrique = 50;
            for (int j = 0;j<5; j++ ){
-             for (int i = 0;i<600/(brickWidth+10); i++ ){
-               BriqueElementFeu brick = new BriqueElementFeu (posXBrique, posYBrique,ball1,player) ;
-               bricks.add(brick);
-               posXBrique = posXBrique + (brickWidth+10);
+             for (int i = 0;i<600/(brickWidth+40); i++ ){
+               int rand = int(random(0,11));
+               if (rand <= 1){
+                 Brique brick = new Brique (posXBrique, posYBrique,ball1,1,player,#F22E32) ;
+                 bricks.add(brick);
+               }
+               else if(rand == 2 || rand == 3){
+                 Brique brick = new Brique (posXBrique, posYBrique,ball1,2,player,#2D7BDE) ;
+                 bricks.add(brick);
+               }
+               else if(rand >= 4 &&  rand <= 6){
+                 Brique brick = new Brique (posXBrique, posYBrique,ball1,3,player,#FFFFFF) ;
+                 bricks.add(brick);
+               }
+               
+               else {
+                 Brique brick = new Brique (posXBrique, posYBrique,ball1,0,player,#000000) ;
+                 bricks.add(brick);
+               }
+               posXBrique = posXBrique + (brickWidth+40);
              }
              posXBrique = 50;
              posYBrique = posYBrique + (60);

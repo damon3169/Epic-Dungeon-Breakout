@@ -8,11 +8,15 @@ class Brique {
   int dammage;
   Ball ball;
   int id = 0;
+  Player player;
   
-  Brique(float posX, float posY, Ball ball) {
+  Brique(float posX, float posY, Ball ball, int id, Player player,color colorBrick) {
     this.posX = posX;
     this.posY = posY;
     this.ball = ball;
+    this.id = id;
+    this.player = player;
+    this.colorBrick = colorBrick;
   }
   
   public void createBrick() {
@@ -24,12 +28,14 @@ class Brique {
   }
   
   private void isCollideBall(){
-        if (ball.getposX()+ball.getwidthBall()/2 >= this.posX && ball.getposX()-ball.getwidthBall()/2<=  this.posX + widthBrick){ 
-     if (600-(ball.getposY()-ball.getwidthBall()/2) >= this.posY && 600-(ball.getposY()+ball.getwidthBall()/2)<=  this.posY + heigthBrick){
-       brickTakeDamage(1);
-       ball.addNumberBricksAtFrame(1);
-       ball.setVy( -ball.getVy());
-      }
+     if (ball.getposX()+ball.getwidthBall()/2 >= this.posX && ball.getposX()-ball.getwidthBall()/2<=  this.posX + widthBrick){ 
+       if (600-(ball.getposY()-ball.getwidthBall()/2) >= this.posY && 600-(ball.getposY()+ball.getwidthBall()/2)<=  this.posY + heigthBrick){
+         brickTakeDamage(1);
+         ball.addNumberBricksAtFrame(1);
+         ball.setVy( -ball.getVy());
+         if (id!= 0)
+         player.bricksElements.add(this);
+        }
     }
   }
   
