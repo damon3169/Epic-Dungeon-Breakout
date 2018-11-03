@@ -28,14 +28,18 @@ class Brique {
   }
   
   private void isCollideBall(){
+    //detect si collision avec balle, si brique possede element alors ajoute l'element au sort du joueur
      if (ball.getposX()+ball.getwidthBall()/2 >= this.posX && ball.getposX()-ball.getwidthBall()/2<=  this.posX + widthBrick){ 
        if (600-(ball.getposY()-ball.getwidthBall()/2) >= this.posY && 600-(ball.getposY()+ball.getwidthBall()/2)<=  this.posY + heigthBrick){
          brickTakeDamage(1);
          ball.addNumberBricksAtFrame(1);
          ball.setVy( -ball.getVy());
-         if (id!= 0)
-         player.bricksElements.add(this);
+         if (id!= 0){
+           player.bricksElements.add(this);
+           delay(20);
+         }
         }
+      
     }
   }
   

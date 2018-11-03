@@ -34,9 +34,20 @@ float getwidthObject() {
 
 void spawnBarre(float X,float Y) 
 {
-  setPosX( X);
-  setPosY( Y);
-  rect(X,Y,widthObject,10);
+    setPosX( X);
+    setPosY( Y);
+    if(X < 600 && X > 0){
+      rect(X,Y,widthObject,10);
+    }
+    else if (X > 600){
+       rect(680-widthObject,Y,widthObject,10);
+
+    }
+    else if (X < 0){
+       rect(0,Y,widthObject,10);
+
+    }
+  
 }
 
 }

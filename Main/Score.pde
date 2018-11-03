@@ -10,13 +10,9 @@ Score (int scoreBase){
 }
 
 void startScore(){
-  
+  textSize(14);
   fill(#FFFFFF);
   text(scoreMonstre,680, 590);
-  textSize(14);
-  
-  
-  
 }
 
 void scoreUp()

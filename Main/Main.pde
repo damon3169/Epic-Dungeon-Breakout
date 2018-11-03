@@ -16,9 +16,12 @@ float posXBrique =50;
 float posYBrique= 50;
 Player player;
 Monster monster;
+float damageColorDuraton = 500;
+PFont font;
+int randomMax = 13;
 
 void setup() {
-  size(700, 600, P3D);
+  size(1400, 600, P3D);
   noFill();
   noStroke();
   smooth();
@@ -26,7 +29,7 @@ void setup() {
  // ball2 = new Ball(500,450,15,5, 3);
  startTimer = new Timer(60);
  menu = new Menu();
-
+font = createFont("Scriptina",50);
  scoreMonstre = new Score(0);
  ball1 = new Ball(300,200,15,5, -3, scoreMonstre);
  bricks = new ArrayList<Brique>();
@@ -36,63 +39,87 @@ void setup() {
 
 void draw() {
    if (menu.getIsGamePlaying()){
-     if(monster.life > 0){
+     textFont(font);
+     //Si jeu lancer
+     if(monster.newlife > 0){
+       //si monstre pas mort
       background(200);
+       fill(255,100,50);
+           rect(680,0,20,600);
+
      fill(0);
      if (!startTimer.timerEnd && player.life >= 0){
+       //si le joueur a encore des pv et a encore du temps
        if (ball1.getposY()<0){
+         //Detecte si la balle est hors du jeu, enleve un pv au joueur et replace la balle
           player.life --;
-          ball1.posX = 300;
-          ball1.posY = 100;
-          ball1.vx = -3;
-          ball1.vy = 5;
+         replaceBall();
        }
-         if (firstTime)
+         if (firstTime || bricks.size() == 0)
          {
+           //place les briques du terrain
            bricks.clear();
            firstTime = false;
-           posXBrique = 50;
+           posXBrique = 30;
            posYBrique = 50;
            for (int j = 0;j<5; j++ ){
-             for (int i = 0;i<600/(brickWidth+40); i++ ){
-               int rand = int(random(0,11));
+             for (int i = 0;i<680/(brickWidth+60); i++ ){
+               int rand = int(random(0,randomMax));
+               //random le type de brique
+               //brique feu
                if (rand <= 1){
                  Brique brick = new Brique (posXBrique, posYBrique,ball1,1,player,#F22E32) ;
                  bricks.add(brick);
                }
+               //brique eau
                else if(rand == 2 || rand == 3){
                  Brique brick = new Brique (posXBrique, posYBrique,ball1,2,player,#2D7BDE) ;
                  bricks.add(brick);
                }
+               //bique air
                else if(rand >= 4 &&  rand <= 6){
                  Brique brick = new Brique (posXBrique, posYBrique,ball1,3,player,#FFFFFF) ;
                  bricks.add(brick);
                }
                
-               else {
+               else if (rand >= 7 &&  rand <= 13){
                  Brique brick = new Brique (posXBrique, posYBrique,ball1,0,player,#000000) ;
                  bricks.add(brick);
                }
-               posXBrique = posXBrique + (brickWidth+40);
+               
+               posXBrique = posXBrique + (brickWidth+60);
              }
-             posXBrique = 50;
+             posXBrique = 30;
              posYBrique = posYBrique + (60);
           }
+          randomMax += 10 ;
          }
          for (int i = 0; i < bricks.size(); i++) {
            bricks.get(i).createBrick();
          }
+         monster.showLife();
          player.spellCast();
+         player.showSpell();
          noStroke();
+         textSize(14);
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
          scoreMonstre.startScore(); //Score
          barre.spawnBarre(mouseX-barre.widthObject/2,550);
          ball1.createBall();
+         //Si effet dommage fini
+         if(monster.tookDamage && millis() - monster.time >= damageColorDuraton){
+           println("test");
+             noTint();
+             monster.tookDamage = false;
+             monster.life = monster.newlife;
+             monster.lastDamage = 0;
+         }
          // ball2.createBall();
         }
         else{
           saveStrings("save.txt",scoreMonstre.stringScore());
+          clear();
           println("Game Over");
         }
        }
@@ -125,4 +152,11 @@ void mouseMoved() {
 
 void keyPressed() {
   exit();
+}
+
+void replaceBall(){
+          ball1.posX = random(100,500);
+          ball1.posY = 280;
+          //ball1.vx = 3;
+          ball1.vy = -5;
 }
