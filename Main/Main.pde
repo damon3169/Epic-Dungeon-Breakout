@@ -102,6 +102,7 @@ void draw() {
          player.showSpell();
          noStroke();
          textSize(14);
+         fill(#FFFFFF);
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
          scoreMonstre.startScore(); //Score
