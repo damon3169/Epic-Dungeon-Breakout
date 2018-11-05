@@ -1,4 +1,7 @@
-//import processing.sound.*;
+import processing.sound.*;
+
+SoundFile bounce;
+SoundFile bounceBrique;
 
 Barre barre;
 Ball ball1,ball2,ball3;
@@ -21,20 +24,22 @@ PFont font;
 int randomMax = 13;
 
 void setup() {
-  size(1400, 600, P3D);
-  noFill();
-  noStroke();
-  smooth();
- barre = new Barre(300,590, 70);
- // ball2 = new Ball(500,450,15,5, 3);
- startTimer = new Timer(60);
- menu = new Menu();
-font = createFont("Scriptina",50);
- scoreMonstre = new Score(0);
- ball1 = new Ball(300,200,15,5, -3, scoreMonstre);
- bricks = new ArrayList<Brique>();
- monster = new Monster();
- player = new Player(monster);
+   size(1400, 600, P3D);
+   noFill();
+   noStroke();
+   smooth();
+   barre = new Barre(300,590, 70);
+   // ball2 = new Ball(500,450,15,5, 3);
+   startTimer = new Timer(60);
+   menu = new Menu();
+  font = createFont("Scriptina",50);
+   scoreMonstre = new Score(0);
+   ball1 = new Ball(300,200,15,5, -3, scoreMonstre);
+   bricks = new ArrayList<Brique>();
+   monster = new Monster();
+   player = new Player(monster);
+   bounce = new SoundFile(this, "bounce.wav ");
+   bounceBrique = new SoundFile(this, "bounce.wav ");
 }
 
 void draw() {
@@ -44,8 +49,8 @@ void draw() {
      if(monster.newlife > 0){
        //si monstre pas mort
       background(200);
-       fill(255,100,50);
-           rect(680,0,20,600);
+      fill(255,100,50);
+      rect(680,0,20,600);
 
      fill(0);
      if (!startTimer.timerEnd && player.life >= 0){
@@ -81,24 +86,29 @@ void draw() {
                  Brique brick = new Brique (posXBrique, posYBrique,ball1,3,player,#FFFFFF) ;
                  bricks.add(brick);
                }
-               
+               //brique basique
                else if (rand >= 7 &&  rand <= 13){
                  Brique brick = new Brique (posXBrique, posYBrique,ball1,0,player,#000000) ;
                  bricks.add(brick);
-               }
+               }// autre emplacement vide
                
                posXBrique = posXBrique + (brickWidth+60);
              }
              posXBrique = 30;
              posYBrique = posYBrique + (60);
           }
+          //Augmentation du pourcentage de vide
           randomMax += 10 ;
          }
+         //Affiche et fait la collision de toutes les briques
          for (int i = 0; i < bricks.size(); i++) {
            bricks.get(i).createBrick();
          }
+         //Affiche les pv du monstre et secoue+ change couleur du monstre si prends dommage
          monster.showLife();
+         //Attaque le monstre si trois elements recuperer
          player.spellCast();
+         //Affiche les spells recuperer
          player.showSpell();
          noStroke();
          textSize(14);
@@ -106,7 +116,9 @@ void draw() {
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
          scoreMonstre.startScore(); //Score
+         //Fais en sorte que la barre suive la souris
          barre.spawnBarre(mouseX-barre.widthObject/2,550);
+         //Affiche la balle + trace balle et gere collision balle
          ball1.createBall();
          //Si effet dommage fini
          if(monster.tookDamage && millis() - monster.time >= damageColorDuraton){
@@ -116,7 +128,6 @@ void draw() {
              monster.life = monster.newlife;
              monster.lastDamage = 0;
          }
-         // ball2.createBall();
         }
         else{
           saveStrings("save.txt",scoreMonstre.stringScore());
@@ -133,28 +144,13 @@ void draw() {
     else  {
     menu.MakeMenu();
   }
-
-  if (mousePressed) {
-
-  }
-  
-
-
-
-
-}
-
-void mouseMoved() {
-    PVector newpos= new PVector(barre.posX,barre.posY);
-        barre.listPosBarre.add(newpos);
-    if (barre.listPosBarre.size()>2) barre.listPosBarre.remove(0);
-    
 }
 
 void keyPressed() {
   exit();
 }
 
+//Replace balle
 void replaceBall(){
           ball1.posX = random(100,500);
           ball1.posY = 280;

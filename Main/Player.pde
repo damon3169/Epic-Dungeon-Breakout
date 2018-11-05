@@ -8,6 +8,7 @@ class Player {
   bricksElements = new ArrayList<Brique>();
   }
   
+  //Affiche les spells récuperer 
   void showSpell() {
     float posXSpeel = 20;
     float posYSpeel = 550;
@@ -32,6 +33,7 @@ class Player {
     }
   }
   
+  // Attaque le monstre si spellNumber elements recuperer
   void spellCast(){
     //si x element dans le spell alors fait des dommages au monstres en fonction des elements du spell
   if (bricksElements.size() == spellNumber) {
@@ -49,6 +51,7 @@ class Player {
         }
         firstTime = true;
     }
+    //Vide le tableau d'element
         bricksElements.removeAll(bricksElements);
         replaceBall();
   }
