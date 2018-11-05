@@ -38,8 +38,8 @@ void setup() {
    bricks = new ArrayList<Brique>();
    monster = new Monster();
    player = new Player(monster);
-   bounce = new SoundFile(this, "bounce.wav ");
-   bounceBrique = new SoundFile(this, "bounce.wav ");
+   bounce = new SoundFile(this, "bounce.wav");
+   bounceBrique = new SoundFile(this, "bounce.wav");
 }
 
 void draw() {
