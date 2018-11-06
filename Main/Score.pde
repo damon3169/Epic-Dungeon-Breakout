@@ -9,7 +9,7 @@ class Score {
   void startScore(){
     textSize(14);
     fill(#FFFFFF);
-    text(scoreMonstre,680, 590);
+    text(scoreMonstre,660, 20);
   }
   
   void scoreUp()

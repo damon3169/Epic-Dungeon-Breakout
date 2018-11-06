@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 class Monster{
   int life = 100;
   PImage background;
@@ -39,6 +41,7 @@ class Monster{
       fill(#FFFFFF);
       text("-"+lastDamage,780,100);
       textSize(700);
+      Garlax01.play();
     }
   }
 

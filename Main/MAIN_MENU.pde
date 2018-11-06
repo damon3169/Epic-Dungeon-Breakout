@@ -23,8 +23,8 @@ boolean isGamePlaying = false;
 Menu(){
 
   smooth();
-  font = createFont("ARCARTER-78.vlw", 14);
-  textFont(font);
+  //font = createFont("ARCARTER-78.vlw", 14);
+  //textFont(font);
   textMode(MODEL);
   cols = w / scl;
   rows = h/ scl;
@@ -73,7 +73,7 @@ boolean getIsGamePlaying() {
 void showMenu() {
   background(255, 0, 0, 0);
   textSize(32);
-  text(" Epic Dungeon Breakout ", 40, 50, 3);
+  text(" Poul-Le-Git, Dragon Slayer ", 40, 50, 3);
   textSize(14);
   text(" Click Here To Play ", 50, 200);
   //
@@ -94,6 +94,7 @@ void showMenu() {
  
   }
    }
+}
   
 
 void playTheGame() {

@@ -12,6 +12,7 @@ class Player {
   void showSpell() {
     float posXSpeel = 20;
     float posYSpeel = 550;
+    text(life,650,575);
     if (bricksElements.size()> 0){
       for (int i =0; i<bricksElements.size(); i ++ ){
          switch(bricksElements.get(i).id){

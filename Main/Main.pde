@@ -2,6 +2,7 @@ import processing.sound.*;
 
 SoundFile bounce;
 SoundFile bounceBrique;
+  SoundFile Garlax01;
 
 Barre barre;
 Ball ball1,ball2,ball3;
@@ -22,6 +23,7 @@ Monster monster;
 float damageColorDuraton = 500;
 PFont font;
 int randomMax = 13;
+int lifeBase = 100;
 
 void setup() {
    size(1400, 600, P3D);
@@ -32,19 +34,21 @@ void setup() {
    // ball2 = new Ball(500,450,15,5, 3);
    startTimer = new Timer(60);
    menu = new Menu();
-  font = createFont("Scriptina",50);
+  font = createFont("Scriptina-50.vlw",50);
    scoreMonstre = new Score(0);
    ball1 = new Ball(300,200,15,5, -3, scoreMonstre);
    bricks = new ArrayList<Brique>();
    monster = new Monster();
    player = new Player(monster);
-   bounce = new SoundFile(this, "bounce.wav");
-   bounceBrique = new SoundFile(this, "bounce.wav");
+   bounce = new SoundFile(this, "Barre.wav");
+   bounceBrique = new SoundFile(this, "Brique.wav");
+   Garlax01 = new SoundFile(this, "Garlax01.wav");
 }
 
 void draw() {
+       textFont(font);
+
    if (menu.getIsGamePlaying()){
-     textFont(font);
      //Si jeu lancer
      if(monster.newlife > 0){
        //si monstre pas mort
@@ -138,7 +142,15 @@ void draw() {
        else {
                  saveStrings("save.txt",scoreMonstre.stringScore());
                  clear();
-                  println("You win");
+                 fill(#FFFFFF);
+                 text("Poul-Le-Git terrassa Garlax et",350,300);
+                 text("sauva le royaume de Cyfandresse", 350,400);
+                    if(mousePressed){
+                      monster.newlife = lifeBase+10;
+                      monster.life = lifeBase+10;
+                      lifeBase = lifeBase+10;
+                      randomMax = 13;
+                    }
        }
    }
     else  {
