@@ -24,6 +24,11 @@ float damageColorDuraton = 500;
 PFont font;
 int randomMax = 13;
 int lifeBase = 100;
+float TimerSong = 153;
+float TimerSongBegin;
+SoundFile music;
+PImage blizzardskull;
+boolean isInIntro = true;
 
 void setup() {
    size(1400, 600, P3D);
@@ -44,12 +49,35 @@ void setup() {
    bounceBrique = new SoundFile(this, "Brique.wav");
    Garlax01 = new SoundFile(this, "Garlax01.wav");
           textFont(font);
-
+   TimerSongBegin = second();
+  music = new SoundFile(this, "Battle.wav");
+  music.play();
+            blizzardskull=loadImage("blizzardskull.png");
 }
 
 void draw() {
-
+    if (second() - TimerSongBegin >= TimerSong) 
+    {
+      music.play();
+    }
    if (menu.getIsGamePlaying()){
+     if(isInIntro){
+      background(200);
+     text("Les ténèbres envahissent peu à peu le royaume ! La peur est présente dans les coeurs de tous les habitants de Cyfandresse...",100,60);
+     text("Le dragon  Garlax doit être anéanti ! Caché dans son antre, seul un magicien puissant peut vaincre le monstre ! ",100,140);
+     text("Le peuple de Cyfandresse demande donc de l'aide au plus grand magicien du royaume : Poul-Le-Git !",100,220);
+     text("La sagesse et la puissance de Poul-Le-Git rivaliseront elles avec la haine de Garlax ?",100,300);
+     text("Commandes :",100,380);
+     text("Déplacez le bâton magique de Poul-Le-Git à l'aide de votre souris pour faire rebondir les boules magiques",100,450);
+     text("Votre boule magique doit rentrer en contact avec 3 briques élémentaires pour attaquer Garlax",100,510);
+     text("Vous avez 60 secondes pour sauver le royaume !",100, 570);
+     
+     
+                    if(keyCode == ENTER){
+                    isInIntro = false;
+                    }
+     }
+     else {
      //Si jeu lancer
      if(monster.newlife > 0){
        //si monstre pas mort
@@ -138,6 +166,18 @@ void draw() {
           saveStrings("save.txt",scoreMonstre.stringScore());
           clear();
           println("Game Over");
+          image(blizzardskull,0,0);
+              blizzardskull.resize(1400,600);
+               if(mousePressed){
+                 menu.isGamePlaying = false;
+                      monster.newlife = 100;
+                      monster.life = 100;
+                      lifeBase = 100;
+                      randomMax = 13;
+                      scoreMonstre.scoreMonstre = 0;
+                      player.life = 3;
+                      startTimer.Time = 60;
+                    }
         }
        }
        else {
@@ -157,13 +197,17 @@ void draw() {
                     }
        }
    }
+   }
     else  {
     menu.MakeMenu();
   }
+  
 }
 
 void keyPressed() {
+  if(keyCode == ESC){
   exit();
+  }
 }
 
 //Replace balle
