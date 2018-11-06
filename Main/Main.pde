@@ -34,7 +34,7 @@ void setup() {
    // ball2 = new Ball(500,450,15,5, 3);
    startTimer = new Timer(60);
    menu = new Menu();
-  font = createFont("Scriptina-50.vlw",50);
+  font = createFont("Scriptina",50);
    scoreMonstre = new Score(0);
    ball1 = new Ball(300,200,15,5, -3, scoreMonstre);
    bricks = new ArrayList<Brique>();
@@ -43,10 +43,11 @@ void setup() {
    bounce = new SoundFile(this, "Barre.wav");
    bounceBrique = new SoundFile(this, "Brique.wav");
    Garlax01 = new SoundFile(this, "Garlax01.wav");
+          textFont(font);
+
 }
 
 void draw() {
-       textFont(font);
 
    if (menu.getIsGamePlaying()){
      //Si jeu lancer
