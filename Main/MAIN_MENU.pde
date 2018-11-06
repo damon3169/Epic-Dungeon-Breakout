@@ -2,7 +2,6 @@ class Menu {
   
 
 int state = stateMenu;
-//Menu
 PFont font;
 
 int cols, rows;
@@ -31,13 +30,10 @@ Menu(){
   rows = h/ scl;
   terrain = new float[cols][rows];
   isGamePlaying = false;
-} // func
-//
+} 
 void MakeMenu()
 {
-  showMenu();
-  //<>// //<>// //<>//
- 
+  showMenu();  //<>//
   
      flying -= 0.07;
   
@@ -68,21 +64,11 @@ void MakeMenu()
       endShape();
     } 
   
-} // func
-// ----------------------------------------------------------------
-// keyboard functions
-
+}
 boolean getIsGamePlaying() {
   return isGamePlaying;
 }
-
-
- //<>// //<>// //<>//
-
-
-// ----------------------------------------------------------------
-// functions to show the menu and functions that are called from the menu.
-// They depend on the states and are called by draw().
+ //<>//
 
 void showMenu() {
   background(255, 0, 0, 0);
@@ -108,18 +94,14 @@ void showMenu() {
  
   }
    }
-  //
-} // func
+  
 
 void playTheGame() {
  isGamePlaying = true;
-  //
-} // func
-//
+} 
+
 
 
 
 
 }
-// ----------------------------------------------------------------
-//*/
