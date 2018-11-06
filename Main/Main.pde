@@ -116,7 +116,7 @@ void draw() {
          //Affiche les spells recuperer
          player.showSpell();
          noStroke();
-         textSize(14);
+         textSize(20);
          fill(#FFFFFF);
          text(startTimer.getTime(),20,20); //Timer
          startTimer.countDown(); //Timer
@@ -144,6 +144,8 @@ void draw() {
                  saveStrings("save.txt",scoreMonstre.stringScore());
                  clear();
                  fill(#FFFFFF);
+                          textSize(50);
+
                  text("Poul-Le-Git terrassa Garlax et",350,300);
                  text("sauva le royaume de Cyfandresse", 350,400);
                     if(mousePressed){
@@ -151,6 +153,7 @@ void draw() {
                       monster.life = lifeBase+10;
                       lifeBase = lifeBase+10;
                       randomMax = 13;
+                      scoreMonstre.scoreUp();
                     }
        }
    }

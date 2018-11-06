@@ -40,7 +40,7 @@ class Monster{
       image(monsterPic, random(790,810), 100  );
       fill(#FFFFFF);
       text("-"+lastDamage,780,100);
-      textSize(700);
+      textSize(50);
       Garlax01.play();
     }
   }
