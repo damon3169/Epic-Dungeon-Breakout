@@ -33,7 +33,7 @@ Menu(){
 } 
 void MakeMenu()
 {
-  showMenu();  //<>//
+  showMenu();  //<>// //<>//
   
      flying -= 0.07;
   
@@ -68,13 +68,13 @@ void MakeMenu()
 boolean getIsGamePlaying() {
   return isGamePlaying;
 }
- //<>//
+ //<>// //<>//
 
 void showMenu() {
   background(255, 0, 0, 0);
   textSize(32);
   text(" Poul-Le-Git, Dragon Slayer ", 40, 50, 3);
-  textSize(14);
+  textSize(25);
   text(" Click Here To Play ", 50, 200);
   //
   text(" Press Any Key To Exit ", 50, 300);
