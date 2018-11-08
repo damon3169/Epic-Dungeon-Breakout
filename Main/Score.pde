@@ -7,7 +7,7 @@ class Score {
   }
   
   void startScore(){
-    textSize(14);
+    textSize(20);
     fill(#FFFFFF);
     text(scoreMonstre,660, 20);
   }

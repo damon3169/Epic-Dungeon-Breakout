@@ -39,7 +39,7 @@ void setup() {
    // ball2 = new Ball(500,450,15,5, 3);
    startTimer = new Timer(60);
    menu = new Menu();
-  font = createFont("Scriptina",50);
+   font = createFont("Scriptina",50);
    scoreMonstre = new Score(0);
    ball1 = new Ball(300,200,15,5, -3, scoreMonstre);
    bricks = new ArrayList<Brique>();
@@ -73,9 +73,9 @@ void draw() {
      text("Vous avez 60 secondes pour sauver le royaume !",100, 570);
      
      
-                    if(keyCode == ENTER){
-                    isInIntro = false;
-                    }
+     if(keyCode == ENTER){
+       isInIntro = false;
+      }
      }
      else {
      //Si jeu lancer
@@ -90,7 +90,7 @@ void draw() {
        //si le joueur a encore des pv et a encore du temps
        if (ball1.getposY()<0){
          //Detecte si la balle est hors du jeu, enleve un pv au joueur et replace la balle
-          player.life --;
+         player.life --;
          replaceBall();
        }
          if (firstTime || bricks.size() == 0)
@@ -155,33 +155,40 @@ void draw() {
          ball1.createBall();
          //Si effet dommage fini
          if(monster.tookDamage && millis() - monster.time >= damageColorDuraton){
-           println("test");
+             println("test");
              noTint();
              monster.tookDamage = false;
              monster.life = monster.newlife;
              monster.lastDamage = 0;
          }
         }
+        //Sinon Game Over
         else{
-          saveStrings("save.txt",scoreMonstre.stringScore());
+          //Ecran Game Over
           clear();
           println("Game Over");
           image(blizzardskull,0,0);
               blizzardskull.resize(1400,600);
                if(mousePressed){
-                 menu.isGamePlaying = false;
-                      monster.newlife = 100;
-                      monster.life = 100;
-                      lifeBase = 100;
-                      randomMax = 13;
-                      scoreMonstre.scoreMonstre = 0;
-                      player.life = 3;
-                      startTimer.Time = 60;
+                     saveStrings("save.txt",scoreMonstre.stringScore());
+                     monster.newlife = 100;
+                     monster.life = 100;
+                     lifeBase = 100;
+                     randomMax = 13;
+                     scoreMonstre.scoreMonstre = 0;
+                     player.life = 3;
+                     startTimer.Time = 60;
+                     firstTime = true;
+                     startTimer.timerEnd = false;
+                     menu.isGamePlaying = false;
+                     player.bricksElements.removeAll(player.bricksElements);
                     }
         }
        }
+       //Sinon Win
        else {
-                 saveStrings("save.txt",scoreMonstre.stringScore());
+       //Ecran Win
+ 
                  clear();
                  fill(#FFFFFF);
                           textSize(50);
@@ -193,7 +200,12 @@ void draw() {
                       monster.life = lifeBase+10;
                       lifeBase = lifeBase+10;
                       randomMax = 13;
+                      firstTime = true;
+                      startTimer.Time = 60;
+                      player.bricksElements.removeAll(player.bricksElements);
                       scoreMonstre.scoreUp();
+                      saveStrings("save.txt",scoreMonstre.stringScore());
+
                     }
        }
    }

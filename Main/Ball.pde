@@ -103,7 +103,6 @@ class Ball {
       //collision avec extrémité droite de la barre
       else if( posX+widthBall/2 >= barre.getPosX()+ barre.getwidthObject()-5 && posX-widthBall/2<= barre.getPosX()+barre.getwidthObject() ){
         vy = -vy;
-        scoreMonstre.scoreUp();
         if (vx<0){
           vx = -vx;
         }
@@ -115,7 +114,6 @@ class Ball {
       //collision avec la gauche de la barre
       else if( posX+widthBall/2>=barre.getPosX() && posX-widthBall/2<= barre.getPosX()+(barre.getwidthObject()/2) ){
         vy = -vy;
-        scoreMonstre.scoreUp();
                   if (newAngle != baseAngle ) {
        vx = 3;
         }
