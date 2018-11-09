@@ -15,7 +15,7 @@ float v = 160;
 float b = 30;
 
 float flying = 0;
-
+boolean firstTime= true;
 float[][] terrain;
 
 boolean isGamePlaying = false;
@@ -33,7 +33,7 @@ Menu(){
 } 
 void MakeMenu()
 {
-  showMenu();  //<>// //<>//
+  showMenu();  //<>// //<>// //<>//
   
      flying -= 0.07;
   
@@ -68,7 +68,7 @@ void MakeMenu()
 boolean getIsGamePlaying() {
   return isGamePlaying;
 }
- //<>// //<>//
+ //<>// //<>// //<>//
 
 void showMenu() {
   background(255, 0, 0, 0);
@@ -76,6 +76,8 @@ void showMenu() {
   text(" Poul-Le-Git, Dragon Slayer ", 40, 50, 3);
   textSize(25);
   text(" Click Here To Play ", 50, 200);
+  String[] lines = loadStrings("data/save.txt");
+  text("Highscore = "+lines[0],1210,35);
   //
   text(" Press Any Key To Exit ", 50, 300);
     if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+b){
@@ -99,6 +101,8 @@ void showMenu() {
 
 void playTheGame() {
  isGamePlaying = true;
+ if (this.firstTime){ introSound.play(); firstTime = false;
+}
 } 
 
 

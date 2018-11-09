@@ -8,6 +8,7 @@ class Monster{
   boolean tookDamage= false;
   int lastDamage ;
   int newlife;
+  boolean firstTimeDommage = true;
   
   Monster(){
   background=loadImage("back_cave.png");
@@ -41,7 +42,11 @@ class Monster{
       fill(#FFFFFF);
       text("-"+lastDamage,780,100);
       textSize(50);
-      Garlax01.play();
+      if(firstTimeDommage)
+      {
+              Garlax01.play();
+              firstTimeDommage = false;
+      }
     }
   }
 

@@ -29,6 +29,9 @@ float TimerSongBegin;
 SoundFile music;
 PImage blizzardskull;
 boolean isInIntro = true;
+SoundFile introSound;
+SoundFile winSound;
+boolean firstTimeWin = true;
 
 void setup() {
    size(1400, 600, P3D);
@@ -48,18 +51,17 @@ void setup() {
    bounce = new SoundFile(this, "Barre.wav");
    bounceBrique = new SoundFile(this, "Brique.wav");
    Garlax01 = new SoundFile(this, "Garlax01.wav");
-          textFont(font);
+   textFont(font);
    TimerSongBegin = second();
   music = new SoundFile(this, "Battle.wav");
-  music.play();
-            blizzardskull=loadImage("blizzardskull.png");
+  music.loop();
+  music.amp(0.1);
+  blizzardskull=loadImage("blizzardskull.png");
+  introSound= new SoundFile(this, "POUL_LE_GIT.wav");
+  winSound = new SoundFile(this, "WIN.wav");
 }
 
 void draw() {
-    if (second() - TimerSongBegin >= TimerSong) 
-    {
-      music.play();
-    }
    if (menu.getIsGamePlaying()){
      if(isInIntro){
       background(200);
@@ -72,9 +74,9 @@ void draw() {
      text("Votre boule magique doit rentrer en contact avec 3 briques élémentaires pour attaquer Garlax",100,510);
      text("Vous avez 60 secondes pour sauver le royaume !",100, 570);
      
-     
      if(keyCode == ENTER){
        isInIntro = false;
+       introSound.stop();
       }
      }
      else {
@@ -155,8 +157,8 @@ void draw() {
          ball1.createBall();
          //Si effet dommage fini
          if(monster.tookDamage && millis() - monster.time >= damageColorDuraton){
-             println("test");
              noTint();
+             monster.firstTimeDommage= true;
              monster.tookDamage = false;
              monster.life = monster.newlife;
              monster.lastDamage = 0;
@@ -170,7 +172,10 @@ void draw() {
           image(blizzardskull,0,0);
               blizzardskull.resize(1400,600);
                if(mousePressed){
-                     saveStrings("save.txt",scoreMonstre.stringScore());
+                     String[] lines = loadStrings("data/save.txt");
+                     if (int(lines[0]) < scoreMonstre.scoreMonstre){
+                     saveStrings("data/save.txt",scoreMonstre.stringScore());
+                     }
                      monster.newlife = 100;
                      monster.life = 100;
                      lifeBase = 100;
@@ -191,8 +196,9 @@ void draw() {
  
                  clear();
                  fill(#FFFFFF);
-                          textSize(50);
-
+                 textSize(50);
+                 if (firstTimeWin){winSound.play();firstTimeWin = false; }
+                 
                  text("Poul-Le-Git terrassa Garlax et",350,300);
                  text("sauva le royaume de Cyfandresse", 350,400);
                     if(mousePressed){
@@ -204,8 +210,8 @@ void draw() {
                       startTimer.Time = 60;
                       player.bricksElements.removeAll(player.bricksElements);
                       scoreMonstre.scoreUp();
-                      saveStrings("save.txt",scoreMonstre.stringScore());
-
+                      winSound.stop();
+                      firstTimeWin = true;
                     }
        }
    }
